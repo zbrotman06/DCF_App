@@ -260,7 +260,6 @@ def fetch_data(ticker: str):
         "cashflow": cf,
         "income_q": inc_q,
         "history": hist,
-        "ticker_obj": t,
     }, None
 
 
