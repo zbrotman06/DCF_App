@@ -236,8 +236,13 @@ def fmt(val, style="$M", decimals=1):
 @st.cache_data(ttl=300, show_spinner=False)
 def fetch_data(ticker: str):
     """Pull all financial data from yfinance."""
+    import time, random
+    time.sleep(random.uniform(1, 2))
     t = yf.Ticker(ticker)
-    info = t.info or {}
+    try:
+        info = t.info or {}
+    except Exception:
+        info = {}
 
     # Pull statements — try annual first
     try:
