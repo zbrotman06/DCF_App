@@ -1,5 +1,5 @@
 # DCF_App
-# 📊 Professional DCF Valuation Engine
+# Professional DCF Valuation Engine
 
 A production-grade Streamlit app for discounted cash flow analysis with real-time market data.
 
