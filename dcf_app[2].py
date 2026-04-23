@@ -1176,10 +1176,10 @@ with tabs[4]:
 
     def tornado_var(param, low_val, high_val, **kwargs):
         """Returns (low_price, high_price, param_name)."""
-        kw_low  = dict(proj_df=proj_df, wacc=wacc, tgr=tgr, exit_ebitda_mult=exit_mult,
-                       net_debt=net_debt, shares_out=shares, **{param: low_val})
-        kw_high = dict(proj_df=proj_df, wacc=wacc, tgr=tgr, exit_ebitda_mult=exit_mult,
-                       net_debt=net_debt, shares_out=shares, **{param: high_val})
+        base = dict(proj_df=proj_df, wacc=wacc, tgr=tgr, exit_ebitda_mult=exit_mult,
+                    net_debt=net_debt, shares_out=shares)
+        kw_low  = {**base, param: low_val}
+        kw_high = {**base, param: high_val}
         vl = dcf_valuation(**kw_low)
         vh = dcf_valuation(**kw_high)
         pl = (vl["price_ggm"] + vl["price_em"]) / 2
