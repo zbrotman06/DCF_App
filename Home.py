@@ -431,8 +431,8 @@ st.markdown("""
 
   <!-- Sub -->
   <p class="suite-sub">
-    DCF valuation, M&A accretion/dilution, sector dashboards, 
-    and strategic scenario analysis — all live, all transparent, 
+    DCF valuation, M&amp;A accretion/dilution, sector dashboards,
+    and strategic scenario analysis — all live, all transparent,
     all exportable.
   </p>
 
@@ -451,122 +451,122 @@ st.markdown("""
   <!-- Module grid -->
   <div class="module-grid">
 
-    <!-- DCF Engine -->
-    <a class="mod-card" href="/DCF_Engine" target="_self">
-      <div class="card-top">
-        <div class="card-icon">◈</div>
-        <span class="card-status status-live">Live</span>
-      </div>
-      <div class="card-name">DCF Engine</div>
-      <div class="card-desc">
-        Full discounted cash flow model with dual terminal value methods, 
-        WACC decomposition, and 7×7 sensitivity tables.
-      </div>
-      <div class="card-tags">
-        <span class="tag">UFCF</span>
-        <span class="tag">GGM</span>
-        <span class="tag">Exit Mult</span>
-        <span class="tag">Scenarios</span>
-        <span class="tag">Excel Export</span>
-      </div>
-      <div class="card-cta">Launch Engine →</div>
-    </a>
-
-    <!-- Consulting Suite -->
-    <a class="mod-card" href="/Consulting" target="_self">
-      <div class="card-top">
-        <div class="card-icon">⬡</div>
-        <span class="card-status status-live">Live</span>
-      </div>
-      <div class="card-name">Consulting Suite</div>
-      <div class="card-desc">
-        M&A accretion/dilution screen, strategic scenario value analysis,
-        and sector dashboard with auto-generated equity research thesis.
-      </div>
-      <div class="card-tags">
-        <span class="tag">M&A</span>
-        <span class="tag">Synergies</span>
-        <span class="tag">Sector Comps</span>
-        <span class="tag">AI Thesis</span>
-      </div>
-      <div class="card-cta">Launch Suite →</div>
-    </a>
-
-    <!-- LBO Model — Coming Soon -->
-    <div class="mod-card soon">
-      <div class="card-top">
-        <div class="card-icon">🔒</div>
-        <span class="card-status status-soon">Soon</span>
-      </div>
-      <div class="card-name">LBO Model</div>
-      <div class="card-desc">
-        Leveraged buyout analysis with debt waterfall, IRR bridge, 
-        and returns attribution across multiple exit scenarios.
-      </div>
-      <div class="card-tags">
-        <span class="tag">IRR</span>
-        <span class="tag">MOIC</span>
-        <span class="tag">Debt Sched.</span>
-        <span class="tag">PE</span>
-      </div>
+  <!-- DCF Engine -->
+  <a class="mod-card" href="/DCF_Engine" target="_self">
+    <div class="card-top">
+      <div class="card-icon">◈</div>
+      <span class="card-status status-live">Live</span>
     </div>
-
-    <!-- Credit / Fixed Income -->
-    <div class="mod-card soon">
-      <div class="card-top">
-        <div class="card-icon">🔒</div>
-        <span class="card-status status-soon">Soon</span>
-      </div>
-      <div class="card-name">Credit Analysis</div>
-      <div class="card-desc">
-        Bond valuation, yield-to-maturity calculator, credit spread 
-        analysis, and covenant coverage ratios for fixed income.
-      </div>
-      <div class="card-tags">
-        <span class="tag">YTM</span>
-        <span class="tag">Duration</span>
-        <span class="tag">Spreads</span>
-        <span class="tag">Covenants</span>
-      </div>
+    <div class="card-name">DCF Engine</div>
+    <div class="card-desc">
+      Full discounted cash flow model with dual terminal value methods,
+      WACC decomposition, and 7×7 sensitivity tables.
     </div>
-
-    <!-- Portfolio Analytics -->
-    <div class="mod-card soon">
-      <div class="card-top">
-        <div class="card-icon">🔒</div>
-        <span class="card-status status-soon">Soon</span>
-      </div>
-      <div class="card-name">Portfolio Analytics</div>
-      <div class="card-desc">
-        Multi-asset portfolio construction with factor exposure, 
-        risk attribution, and efficient frontier visualization.
-      </div>
-      <div class="card-tags">
-        <span class="tag">Sharpe</span>
-        <span class="tag">Beta</span>
-        <span class="tag">Drawdown</span>
-        <span class="tag">AM</span>
-      </div>
+    <div class="card-tags">
+      <span class="tag">UFCF</span>
+      <span class="tag">GGM</span>
+      <span class="tag">Exit Mult</span>
+      <span class="tag">Scenarios</span>
+      <span class="tag">Excel Export</span>
     </div>
+    <div class="card-cta">Launch Engine →</div>
+  </a>
 
-    <!-- Real Estate -->
-    <div class="mod-card soon">
-      <div class="card-top">
-        <div class="card-icon">🔒</div>
-        <span class="card-status status-soon">Soon</span>
-      </div>
-      <div class="card-name">Real Estate Model</div>
-      <div class="card-desc">
-        Property-level cash flow model with cap rate analysis, 
-        debt service coverage, and equity multiple returns.
-      </div>
-      <div class="card-tags">
-        <span class="tag">Cap Rate</span>
-        <span class="tag">DSCR</span>
-        <span class="tag">NOI</span>
-        <span class="tag">RE PE</span>
-      </div>
+  <!-- Consulting Suite -->
+  <a class="mod-card" href="/Consulting" target="_self">
+    <div class="card-top">
+      <div class="card-icon">⬡</div>
+      <span class="card-status status-live">Live</span>
     </div>
+    <div class="card-name">Consulting Suite</div>
+    <div class="card-desc">
+      M&amp;A accretion/dilution screen, strategic scenario value analysis,
+      and sector dashboard with auto-generated equity research thesis.
+    </div>
+    <div class="card-tags">
+      <span class="tag">M&amp;A</span>
+      <span class="tag">Synergies</span>
+      <span class="tag">Sector Comps</span>
+      <span class="tag">AI Thesis</span>
+    </div>
+    <div class="card-cta">Launch Suite →</div>
+  </a>
+
+  <!-- LBO Model — Coming Soon -->
+  <div class="mod-card soon">
+    <div class="card-top">
+      <div class="card-icon">🔒</div>
+      <span class="card-status status-soon">Soon</span>
+    </div>
+    <div class="card-name">LBO Model</div>
+    <div class="card-desc">
+      Leveraged buyout analysis with debt waterfall, IRR bridge,
+      and returns attribution across multiple exit scenarios.
+    </div>
+    <div class="card-tags">
+      <span class="tag">IRR</span>
+      <span class="tag">MOIC</span>
+      <span class="tag">Debt Sched.</span>
+      <span class="tag">PE</span>
+    </div>
+  </div>
+
+  <!-- Credit / Fixed Income -->
+  <div class="mod-card soon">
+    <div class="card-top">
+      <div class="card-icon">🔒</div>
+      <span class="card-status status-soon">Soon</span>
+    </div>
+    <div class="card-name">Credit Analysis</div>
+    <div class="card-desc">
+      Bond valuation, yield-to-maturity calculator, credit spread
+      analysis, and covenant coverage ratios for fixed income.
+    </div>
+    <div class="card-tags">
+      <span class="tag">YTM</span>
+      <span class="tag">Duration</span>
+      <span class="tag">Spreads</span>
+      <span class="tag">Covenants</span>
+    </div>
+  </div>
+
+  <!-- Portfolio Analytics -->
+  <div class="mod-card soon">
+    <div class="card-top">
+      <div class="card-icon">🔒</div>
+      <span class="card-status status-soon">Soon</span>
+    </div>
+    <div class="card-name">Portfolio Analytics</div>
+    <div class="card-desc">
+      Multi-asset portfolio construction with factor exposure,
+      risk attribution, and efficient frontier visualization.
+    </div>
+    <div class="card-tags">
+      <span class="tag">Sharpe</span>
+      <span class="tag">Beta</span>
+      <span class="tag">Drawdown</span>
+      <span class="tag">AM</span>
+    </div>
+  </div>
+
+  <!-- Real Estate -->
+  <div class="mod-card soon">
+    <div class="card-top">
+      <div class="card-icon">🔒</div>
+      <span class="card-status status-soon">Soon</span>
+    </div>
+    <div class="card-name">Real Estate Model</div>
+    <div class="card-desc">
+      Property-level cash flow model with cap rate analysis,
+      debt service coverage, and equity multiple returns.
+    </div>
+    <div class="card-tags">
+      <span class="tag">Cap Rate</span>
+      <span class="tag">DSCR</span>
+      <span class="tag">NOI</span>
+      <span class="tag">RE PE</span>
+    </div>
+  </div>
 
   </div>
 
