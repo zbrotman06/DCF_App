@@ -982,8 +982,8 @@ with st.sidebar:
         else:
             rf_rate      = st.slider("Risk-Free Rate",      0.02, 0.07, 0.043, 0.001, format="%.2f%%")
             erp          = st.slider("Equity Risk Premium", 0.03, 0.09, 0.055, 0.005, format="%.2f%%")
-            override_beta= st.checkbox("Override Beta")
-            beta_man     = st.slider("Beta", 0.3, 2.5, 1.1, 0.05) if override_beta else None
+            beta_ov= st.checkbox("Override Beta")
+            beta     = st.slider("Beta", 0.3, 2.5, 1.1, 0.05) if beta_ov else None
         mid_year = st.checkbox("Mid-year convention",
                                 help="Discounts at t-0.5. More accurate, ~5% price uplift.")
         use_adj  = st.checkbox("Use SBC-adjusted UFCF", value=sbc_pct > 0)
