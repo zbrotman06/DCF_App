@@ -906,7 +906,9 @@ with st.sidebar:
 
     st.markdown("<div style='margin:12px 0 4px 0;'></div>", unsafe_allow_html=True)
     run = st.button("▶  Run Analysis", use_container_width=True, type="primary")
-
+    st.markdown("<div style='margin:8px 0 0;'></div>", unsafe_allow_html=True)
+    if st.button("← Home", use_container_width=True):
+        st.switch_page("Home.py")
 # ══════════════════════════════════════════════════════════════
 # LANDING
 # ══════════════════════════════════════════════════════════════
