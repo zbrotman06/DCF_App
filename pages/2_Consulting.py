@@ -604,7 +604,8 @@ def sector_upside_hbar(sector_results):
     ))
     fig.add_vline(x=0, line_color="#484f58", line_width=1, line_dash="dot")
     fig.update_layout(title="Avg DCF Upside / (Downside) vs Market",
-                      height=280, **CHART, xaxis=dict(tickformat=".0%"))
+                      height=280, **CHART)
+    fig.update_layout(xaxis=dict(tickformat=".0%"))
     return fig
 
 def sector_multiples_scatter(sector_results):
