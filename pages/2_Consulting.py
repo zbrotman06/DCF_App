@@ -1574,7 +1574,7 @@ else:
             st.markdown("""<div class='info-box'>
             ℹ &nbsp; This thesis was generated from a template. For a fully AI-written,
             context-aware 300-word equity research thesis, paste your Claude API key
-            in the sidebar (get one free at console.anthropic.com).
+            in the sidebar (console.anthropic.com).
             </div>""", unsafe_allow_html=True)
 
         # Export
