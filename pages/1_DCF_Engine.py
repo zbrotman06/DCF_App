@@ -1006,11 +1006,11 @@ with st.sidebar:
         sh_override = st.number_input("Shares (M)", value=1000.0, step=10.0)*1e6 if override_sh else None
  
     st.markdown("<div style='margin:14px 0 4px;'></div>", unsafe_allow_html=True)
-    run = st.button("▶  Run Valuation", use_container_width=True, type="primary")
+    run = st.button("▶  Run Valuation", width="stretch", type="primary")
  
     # Home button
     st.markdown("<div style='margin:8px 0 0;'></div>", unsafe_allow_html=True)
-    if st.button("← Home", use_container_width=True):
+    if st.button("← Home", width="stretch"):
         st.switch_page("Home.py")
 
 # ═══════════════════════════════════════════
@@ -1074,8 +1074,8 @@ shares   = sh_override   if (override_sh and 'sh_override' in dir()) else shares
 shares   = max(shares, 1e6)   # guard
 
 # ── WACC ──────────────────────────────────
-if manual_wacc and 'wacc_input' in dir():
-    wacc = wacc_input
+if manual_wacc:
+    wacc = wacc_man
     cod, ew, dw = 0.05, 0.8, 0.2
     cost_of_equity = wacc
 else:
@@ -1172,7 +1172,7 @@ with tabs[0]:
     if not data["history"].empty:
         fig_hist = plot_price_history_with_range(
             data["history"], val["price_ggm"], val["price_em"], cur_price)
-        st.plotly_chart(fig_hist, use_container_width=True, config=CHART_CONFIG)
+        st.plotly_chart(fig_hist, width="stretch", config=CHART_CONFIG)
     else:
         st.info("No price history available.")
 
@@ -1227,7 +1227,7 @@ with tabs[1]:
         </table>
         """, unsafe_allow_html=True)
 
-        st.plotly_chart(plot_ufcf_history(hist_df), use_container_width=True, config=CHART_CONFIG)
+        st.plotly_chart(plot_ufcf_history(hist_df), width="stretch", config=CHART_CONFIG)
     else:
         st.warning("Could not compute historical UFCF — check ticker or try a different company.")
 
@@ -1264,7 +1264,7 @@ with tabs[2]:
     </table>
     """, unsafe_allow_html=True)
 
-    st.plotly_chart(plot_projected_fcf(proj_df, val["pv_fcf"]), use_container_width=True, config=CHART_CONFIG)
+    st.plotly_chart(plot_projected_fcf(proj_df, val["pv_fcf"]), width="stretch", config=CHART_CONFIG)
 
 
 # ─ Tab 3: Valuation Bridge ──────────────
@@ -1298,7 +1298,7 @@ with tabs[3]:
 
         tv_pct = val["pv_tv_ggm"] / val["ev_ggm"] * 100 if val["ev_ggm"] > 0 else 0
         st.markdown(f"*TV represents **{tv_pct:.0f}%** of EV — {'⚠️ high sensitivity to terminal assumptions' if tv_pct > 75 else '✅ reasonable terminal value weight'}*")
-        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="ggm"), use_container_width=True, config=CHART_CONFIG)
+        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="ggm"), width="stretch", config=CHART_CONFIG)
 
     with right:
         st.markdown("#### Exit Multiple Method")
@@ -1325,7 +1325,7 @@ with tabs[3]:
 
         tv_pct_em = val["pv_tv_em"] / val["ev_em"] * 100 if val["ev_em"] > 0 else 0
         st.markdown(f"*TV represents **{tv_pct_em:.0f}%** of EV — {'⚠️ high sensitivity to exit multiple' if tv_pct_em > 75 else '✅ reasonable terminal value weight'}*")
-        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="em"), use_container_width=True, config=CHART_CONFIG)
+        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="em"), width="stretch", config=CHART_CONFIG)
 
     # PV of each year's FCF
     st.markdown('<div class="section-header">Annual PV of FCF ($M)</div>', unsafe_allow_html=True)
@@ -1340,7 +1340,7 @@ with tabs[3]:
                             marker_color="#3fb950"))
     fig_pv.update_layout(barmode="group", title="Nominal vs. Present Value of FCF ($M)",
                          **CHART_LAYOUT)
-    st.plotly_chart(fig_pv, use_container_width=True, config=CHART_CONFIG)
+    st.plotly_chart(fig_pv, width="stretch", config=CHART_CONFIG)
 
 
 # ─ Tab 4: Sensitivity ───────────────────
@@ -1358,15 +1358,15 @@ with tabs[4]:
     sA, sB = st.columns(2)
     with sA:
         st.markdown("#### GGM — WACC × Terminal Growth Rate")
-        st.plotly_chart(plot_sensitivity_heatmap(sens_ggm, cur_price), use_container_width=True, config=CHART_CONFIG)
+        st.plotly_chart(plot_sensitivity_heatmap(sens_ggm, cur_price), width="stretch", config=CHART_CONFIG)
         st.dataframe(sens_ggm.style.background_gradient(cmap="RdYlGn", axis=None)
-                     .format("${:.2f}"), use_container_width=True)
+                     .format("${:.2f}"), width="stretch")
 
     with sB:
         st.markdown("#### Exit Multiple — WACC × EV/EBITDA")
-        st.plotly_chart(plot_sensitivity_heatmap(sens_em, cur_price), use_container_width=True, config=CHART_CONFIG)
+        st.plotly_chart(plot_sensitivity_heatmap(sens_em, cur_price), width="stretch", config=CHART_CONFIG)
         st.dataframe(sens_em.style.background_gradient(cmap="RdYlGn", axis=None)
-                     .format("${:.2f}"), use_container_width=True)
+                     .format("${:.2f}"), width="stretch")
 
     # Tornado chart — WACC vs TGR impact
     st.markdown('<div class="section-header">Tornado: Key Assumption Impact</div>',
@@ -1415,7 +1415,7 @@ with tabs[4]:
                        annotation_text=f"Base: ${base_price:.2f}")
     fig_torn.update_layout(title="Tornado: Assumption Sensitivity (Avg Price $)",
                            barmode="overlay", **CHART_LAYOUT, height=280)
-    st.plotly_chart(fig_torn, use_container_width=True, config=CHART_CONFIG)
+    st.plotly_chart(fig_torn, width="stretch", config=CHART_CONFIG)
 
 
 # ─ Tab 5: WACC Detail ────────────────────
@@ -1465,7 +1465,7 @@ with tabs[5]:
         textposition="outside",
     ))
     fig_wacc.update_layout(title="WACC Composition", **CHART_LAYOUT, height=320)
-    st.plotly_chart(fig_wacc, use_container_width=True, config=CHART_CONFIG)
+    st.plotly_chart(fig_wacc, width="stretch", config=CHART_CONFIG)
 
 
 # ═══════════════════════════════════════════
@@ -1487,7 +1487,7 @@ with ec1:
             data=xl_bytes,
             file_name=f"{ticker_input}_DCF_{pd.Timestamp.now().strftime('%Y%m%d')}.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            use_container_width=True,
+            width="stretch",
             type="primary",
         )
     except Exception as ex:
@@ -1501,7 +1501,7 @@ with ec2:
         data=csv_buf,
         file_name=f"{ticker_input}_projections.csv",
         mime="text/csv",
-        use_container_width=True,
+        width="stretch",
     )
 
 with ec3:
