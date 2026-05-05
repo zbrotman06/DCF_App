@@ -6,4 +6,5 @@ plotly
 openpyxl
 requests
 curl_cffi
+matplotlib
 anthropic
