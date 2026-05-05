@@ -767,7 +767,7 @@ def export_excel(ticker, info, hist_df, proj_df, valuation, sensitivity_ggm, sen
 # PLOTTING FUNCTIONS
 # ═══════════════════════════════════════════
 
-CHART = dict(
+CHART_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
     font=dict(family="Geist Mono, JetBrains Mono, monospace", color="#57606a", size=10),
