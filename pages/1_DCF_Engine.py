@@ -921,7 +921,6 @@ def plot_price_history_with_range(hist, price_ggm, price_em, current_price):
 # SIDEBAR — INPUTS
 # ═══════════════════════════════════════════
 
-SIDEBAR_TEMPLATE = '''
 with st.sidebar:
     st.markdown("""
     <div style='padding:16px 0 6px 0;'>
@@ -1013,7 +1012,6 @@ with st.sidebar:
     st.markdown("<div style='margin:8px 0 0;'></div>", unsafe_allow_html=True)
     if st.button("← Home", use_container_width=True):
         st.switch_page("Home.py")
-'''
 
 # ═══════════════════════════════════════════
 # MAIN AREA
