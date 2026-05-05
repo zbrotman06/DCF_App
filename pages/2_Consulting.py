@@ -626,9 +626,9 @@ def sector_multiples_scatter(sector_results):
             marker=dict(size=16, color=colors[i%len(colors)]),
         ))
     fig.update_layout(title="EV/EBITDA vs EBITDA Margin — Relative Positioning",
-                      height=340, showlegend=False, **CHART,
-                      xaxis_title="EBITDA Margin", yaxis_title="EV/EBITDA",
-                      xaxis=dict(tickformat=".1%"))
+                      height=340, showlegend=False, **CHART)
+    fig.update_layout(xaxis_title="EBITDA Margin", yaxis_title="EV/EBITDA",
+                  xaxis=dict(tickformat=".1%"))
     return fig
 
 def generate_thesis(sector_results, rf=0.043, api_key=None):
