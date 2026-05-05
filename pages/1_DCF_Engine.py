@@ -1000,10 +1000,10 @@ with st.sidebar:
  
     # ── Overrides ─────────────────────────────────────────────
     with st.expander("Balance Sheet Overrides", expanded=False):
-        ov_nd = st.checkbox("Override Net Debt")
-        nd_ov = st.number_input("Net Debt ($B)", value=0.0, step=0.5)*1e9 if ov_nd else None
-        ov_sh = st.checkbox("Override Shares")
-        sh_ov = st.number_input("Shares (M)", value=1000.0, step=10.0)*1e6 if ov_sh else None
+        override_nd = st.checkbox("Override Net Debt")        
+        nd_override = st.number_input("Net Debt ($B)", value=0.0, step=0.5)*1e9 if override_nd else None
+        override_sh = st.checkbox("Override Shares")
+        sh_override = st.number_input("Shares (M)", value=1000.0, step=10.0)*1e6 if override_sh else None
  
     st.markdown("<div style='margin:14px 0 4px;'></div>", unsafe_allow_html=True)
     run = st.button("▶  Run Valuation", use_container_width=True, type="primary")
