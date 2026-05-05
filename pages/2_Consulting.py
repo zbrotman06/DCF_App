@@ -790,8 +790,7 @@ def plot_strategy_bars(scenario_results, cur_price, fin_name):
 
     fig = go.Figure()
     fig.add_trace(go.Bar(name="GGM Price",  x=names, y=ggm_vals,
-        marker_color=[c+"aa" for c in ["#3fb95099","#388bfd99","#f8514999"]],
-        text=[f"${v:.2f}" for v in ggm_vals], textposition="outside",
+        marker_color=["rgba(63,185,80,0.6)","rgba(56,139,253,0.6)","rgba(248,81,73,0.6)"],        text=[f"${v:.2f}" for v in ggm_vals], textposition="outside",
         textfont=dict(family="JetBrains Mono", size=11)))
     fig.add_trace(go.Bar(name="Exit Mult",  x=names, y=em_vals,
         marker_color=colors, opacity=0.6,
