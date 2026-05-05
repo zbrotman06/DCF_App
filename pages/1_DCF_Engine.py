@@ -33,183 +33,339 @@ st.set_page_config(
 # ─────────────────────────────────────────────
 # CUSTOM CSS
 # ─────────────────────────────────────────────
-st.markdown("""
+NEW_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
-
-html, body, [class*="css"] {
-    font-family: 'IBM Plex Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500;600&display=swap');
+ 
+/* ── CSS Variables ── */
+:root {
+    --bg-base:     #050810;
+    --bg-subtle:   #0a0e18;
+    --bg-card:     #0d1117;
+    --bg-muted:    #111827;
+    --bg-overlay:  #161f2e;
+    --bg-border:   #1a2535;
+    --bg-divider:  #1e2d3d;
+ 
+    --green:       #2ea043;
+    --green-text:  #3fb950;
+    --green-dim:   rgba(63,185,80,0.12);
+    --green-border:rgba(63,185,80,0.25);
+ 
+    --red:         #c93737;
+    --red-text:    #f85149;
+    --red-dim:     rgba(248,81,73,0.10);
+    --red-border:  rgba(248,81,73,0.25);
+ 
+    --blue:        #1158c7;
+    --blue-text:   #58a6ff;
+    --blue-dim:    rgba(88,166,255,0.10);
+    --blue-border: rgba(88,166,255,0.22);
+ 
+    --gold-text:   #d29922;
+    --gold-dim:    rgba(210,153,34,0.10);
+    --gold-border: rgba(210,153,34,0.25);
+ 
+    --text-1: #e6edf3;
+    --text-2: #8b949e;
+    --text-3: #57606a;
+    --text-4: #30363d;
+    --text-5: #21262d;
+ 
+    --font-display: 'DM Sans', sans-serif;
+    --font-serif:   'Instrument Serif', Georgia, serif;
+    --font-mono:    'Geist Mono', monospace;
 }
-
-/* Dark professional theme */
+ 
+/* ── Page base ── */
+*, html, body, [class*="css"] { font-family: var(--font-display); box-sizing: border-box; }
 .stApp {
-    background: #0d1117;
-    color: #e6edf3;
+    background-color: var(--bg-base);
+    background-image:
+        linear-gradient(rgba(26,37,53,0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,37,53,0.25) 1px, transparent 1px);
+    background-size: 48px 48px;
 }
-
-/* Sidebar */
+.block-container { padding: 1.5rem 2.5rem !important; max-width: 100% !important; }
+#MainMenu, footer, header { visibility: hidden; }
+ 
+/* ── Sidebar ── */
 [data-testid="stSidebar"] {
-    background: #161b22 !important;
-    border-right: 1px solid #21262d;
+    background: linear-gradient(180deg, #080c14 0%, var(--bg-base) 100%) !important;
+    border-right: 1px solid var(--bg-border);
 }
-[data-testid="stSidebar"] * { color: #c9d1d9 !important; }
-
-/* Metric cards */
-.metric-card {
-    background: linear-gradient(135deg, #1c2128 0%, #161b22 100%);
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin: 6px 0;
-    position: relative;
-    overflow: hidden;
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span { color: var(--text-3) !important; font-size: 12px !important; }
+[data-testid="stSidebar"] .stTextInput input {
+    background: var(--bg-muted) !important;
+    border: 1px solid var(--bg-divider) !important;
+    color: var(--text-1) !important;
+    border-radius: 8px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.5px !important;
+    padding: 10px 14px !important;
 }
-.metric-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: #238636;
+[data-testid="stSidebar"] .stTextInput input:focus {
+    border-color: var(--blue-text) !important;
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.08) !important;
 }
-.metric-card.blue::before { background: #1f6feb; }
-.metric-card.orange::before { background: #d29922; }
-.metric-card.purple::before { background: #8b949e; }
-.metric-card.red::before { background: #da3633; }
-
-.metric-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
+ 
+/* ── Sidebar expanders ── */
+[data-testid="stSidebar"] .streamlit-expanderHeader {
+    font-family: var(--font-mono) !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.8px !important;
+    color: var(--text-4) !important;
+    background: transparent !important;
+    border: none !important;
+    border-top: 1px solid var(--bg-border) !important;
+    padding: 12px 4px !important;
+}
+[data-testid="stSidebar"] .streamlit-expanderHeader:hover {
+    color: var(--text-3) !important;
+}
+ 
+/* ── Tabs ── */
+[data-testid="stTabs"] [role="tablist"] {
+    border-bottom: 1px solid var(--bg-border);
+    gap: 0;
+    background: transparent;
+}
+[data-testid="stTabs"] [role="tab"] {
+    font-family: var(--font-mono) !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: #7d8590 !important;
-    margin-bottom: 6px;
+    color: var(--text-4) !important;
+    padding: 11px 18px !important;
+    border: none !important;
+    background: transparent !important;
+    border-bottom: 2px solid transparent !important;
+    transition: all 0.18s;
 }
-.metric-value {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 26px;
-    font-weight: 600;
-    color: #e6edf3;
-    line-height: 1;
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] {
+    color: var(--blue-text) !important;
+    border-bottom: 2px solid var(--blue-text) !important;
 }
-.metric-sub {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: #7d8590;
-    margin-top: 4px;
+[data-testid="stTabs"] [role="tab"]:hover { color: var(--text-2) !important; }
+ 
+/* ── KPI Cards — two-tier hierarchy ── */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1.6fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 18px 0;
+    align-items: stretch;
 }
-.metric-delta-pos { color: #3fb950; }
-.metric-delta-neg { color: #f85149; }
-
-/* Section headers */
-.section-header {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
+.kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.18s;
+}
+.kpi-card:hover { border-color: var(--bg-divider); }
+.kpi-card.primary { padding: 22px 24px; }
+.kpi-accent { position: absolute; top: 0; left: 0; width: 100%; height: 2px; }
+.kpi-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #7d8590;
-    border-bottom: 1px solid #21262d;
-    padding-bottom: 8px;
-    margin: 24px 0 16px 0;
+    color: var(--text-4);
+    margin-bottom: 10px;
 }
-
-/* Upside badge */
-.badge-bull {
-    display: inline-block;
-    background: rgba(63, 185, 80, 0.15);
-    border: 1px solid rgba(63, 185, 80, 0.4);
-    color: #3fb950;
-    border-radius: 4px;
-    padding: 2px 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+.kpi-value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
     font-weight: 600;
+    color: var(--text-1);
+    line-height: 1;
 }
-.badge-bear {
-    display: inline-block;
-    background: rgba(248, 81, 73, 0.15);
-    border: 1px solid rgba(248, 81, 73, 0.4);
-    color: #f85149;
-    border-radius: 4px;
-    padding: 2px 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+.kpi-card.primary .kpi-value { font-size: 28px; }
+.kpi-card:not(.primary) .kpi-value { font-size: 19px; }
+.kpi-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-4);
+    margin-top: 7px;
+    font-variant-numeric: tabular-nums;
+}
+.pos { color: var(--green-text); }
+.neg { color: var(--red-text);   }
+ 
+/* ── Hero ── */
+.hero { padding: 6px 0 22px 0; }
+.hero-ticker {
+    font-family: var(--font-serif);
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    color: var(--text-1);
+    line-height: 1;
+}
+.hero-name { font-size: 13px; color: var(--text-4); margin: 5px 0 14px; font-weight: 400; }
+.hero-price { font-family: var(--font-mono); font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+ 
+/* ── Section label ── */
+.sec-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--text-5);
+    padding: 20px 0 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    margin-bottom: 14px;
 }
-
-/* Data tables */
-.styled-table {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+ 
+/* ── Financial tables ── */
+.fin-table {
     width: 100%;
     border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-variant-numeric: tabular-nums;
 }
-.styled-table th {
-    background: #1c2128;
-    color: #7d8590;
-    font-size: 10px;
+.fin-table th {
+    background: var(--bg-base);
+    color: var(--text-4);
+    font-size: 9px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 8px 12px;
+    letter-spacing: 1.4px;
+    padding: 10px 14px;
     text-align: right;
-    border-bottom: 1px solid #30363d;
-}
-.styled-table th:first-child { text-align: left; }
-.styled-table td {
-    padding: 7px 12px;
-    text-align: right;
-    border-bottom: 1px solid #21262d;
-    color: #c9d1d9;
-}
-.styled-table td:first-child { text-align: left; color: #7d8590; }
-.styled-table tr:hover td { background: #1c2128; }
-.row-total td { border-top: 1px solid #30363d; font-weight: 600; color: #e6edf3 !important; }
-
-/* Tabs */
-[data-testid="stTab"] {
-    font-family: 'IBM Plex Mono', monospace !important;
-    font-size: 12px !important;
-}
-
-/* Divider */
-.divider {
-    border: none;
-    border-top: 1px solid #21262d;
-    margin: 16px 0;
-}
-
-/* Ticker header */
-.ticker-header {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 32px;
+    border-bottom: 1px solid var(--bg-border);
     font-weight: 600;
-    color: #e6edf3;
-    letter-spacing: -0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
-.company-name {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
-    color: #7d8590;
-    font-weight: 400;
+.fin-table th:first-child { text-align: left; padding-left: 6px; }
+.fin-table td {
+    padding: 7px 14px;
+    text-align: right;
+    border-bottom: 1px solid rgba(255,255,255,0.025);
+    color: var(--text-2);
+    font-variant-numeric: tabular-nums;   /* ← CRITICAL: aligns decimal points */
 }
-
-/* Warning / info boxes */
+.fin-table td:first-child { text-align: left; padding-left: 6px; color: var(--text-3); }
+.fin-table td.negative   { color: var(--red-text) !important; }
+.fin-table td.positive   { color: var(--green-text) !important; }
+.fin-table tr:hover td   { background: rgba(255,255,255,0.015); }
+.fin-table .tot { border-top: 1px solid var(--bg-border); }
+.fin-table .tot td {
+    color: var(--text-1) !important;
+    font-weight: 600;
+    background: var(--bg-muted);
+    border-bottom: 2px solid var(--green);
+}
+.fin-table .sub td { color: var(--text-4); font-size: 10.5px; }
+ 
+/* ── Badges ── */
+.badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    border-radius: 6px; padding: 4px 10px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+}
+.badge-up  { background: var(--green-dim); border: 1px solid var(--green-border); color: var(--green-text); }
+.badge-dn  { background: var(--red-dim);   border: 1px solid var(--red-border);   color: var(--red-text); }
+.badge-neu { background: var(--blue-dim);  border: 1px solid var(--blue-border);  color: var(--blue-text); }
+ 
+/* ── Info / warning boxes ── */
 .info-box {
-    background: rgba(31, 111, 235, 0.1);
-    border: 1px solid rgba(31, 111, 235, 0.3);
-    border-radius: 6px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: #79c0ff;
-    margin: 8px 0;
+    background: var(--blue-dim); border: 1px solid var(--blue-border);
+    border-radius: 8px; padding: 12px 16px;
+    font-size: 12px; color: var(--text-2);
+    margin: 10px 0; font-family: var(--font-mono); line-height: 1.7;
 }
-
-/* Plotly chart background override */
+.warn-box {
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    border-left: 3px solid var(--gold-text);
+    border-radius: 0 8px 8px 0; padding: 12px 16px;
+    font-size: 12px; color: var(--gold-text);
+    margin: 10px 0; font-family: var(--font-mono); line-height: 1.7;
+}
+.err-box {
+    background: var(--red-dim); border: 1px solid var(--red-border);
+    border-left: 3px solid var(--red-text);
+    border-radius: 0 8px 8px 0; padding: 12px 16px;
+    font-size: 12px; color: var(--red-text);
+    margin: 10px 0; font-family: var(--font-mono); line-height: 1.7;
+}
+ 
+/* ── Scenario pills ── */
+.scenario-bar { display: flex; gap: 8px; margin: 10px 0 18px; }
+.sc-pill {
+    border-radius: 6px; padding: 5px 14px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    border: 1px solid; cursor: default; letter-spacing: 0.3px;
+}
+.sc-base { background: var(--blue-dim);  border-color: var(--blue-border);  color: var(--blue-text); }
+.sc-bull { background: var(--green-dim); border-color: var(--green-border); color: var(--green-text); }
+.sc-bear { background: var(--red-dim);   border-color: var(--red-border);   color: var(--red-text); }
+ 
+/* ── Sidebar section header ── */
+.sb-section {
+    font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--text-5);
+    border-top: 1px solid var(--bg-border); padding: 14px 0 6px; margin-top: 6px;
+}
+ 
+/* ── Buttons ── */
+.stDownloadButton button {
+    background: linear-gradient(135deg, #1a7f37, #238636) !important;
+    border: 1px solid #2ea043 !important; color: #fff !important;
+    border-radius: 8px !important; font-family: var(--font-mono) !important;
+    font-size: 12px !important; font-weight: 600 !important;
+    letter-spacing: 0.5px !important; padding: 10px 20px !important;
+    width: 100%; transition: all 0.18s !important;
+}
+.stButton button {
+    background: linear-gradient(135deg, #0f3d8a, var(--blue)) !important;
+    border: 1px solid var(--blue-text) !important; color: #fff !important;
+    border-radius: 8px !important; font-family: var(--font-mono) !important;
+    font-size: 12px !important; font-weight: 600 !important;
+    padding: 11px !important; width: 100% !important;
+}
+ 
+/* ── Divider ── */
+.divider { border: none; border-top: 1px solid var(--bg-border); margin: 22px 0; }
+ 
+/* ── Footer ── */
+.footer {
+    font-family: var(--font-mono); font-size: 10px; color: var(--text-5);
+    text-align: center; padding: 22px 0; letter-spacing: 1.2px;
+}
+ 
+/* ── st.metric override ── */
+[data-testid="stMetric"] {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-border);
+    border-radius: 10px;
+    padding: 14px 18px;
+}
+[data-testid="stMetricLabel"] { font-family: var(--font-mono) !important; font-size: 10px !important; color: var(--text-4) !important; text-transform: uppercase; letter-spacing: 1.5px; }
+[data-testid="stMetricValue"] { font-family: var(--font-mono) !important; font-variant-numeric: tabular-nums; color: var(--text-1) !important; }
+[data-testid="stMetricDelta"] { font-family: var(--font-mono) !important; font-variant-numeric: tabular-nums; }
+ 
+/* ── Plotly container ── */
 .js-plotly-plot .plotly .main-svg { background: transparent !important; }
-
+ 
+/* ── Home nav button (hidden, triggered by JS) ── */
+.home-nav-btn { display: none; }
 </style>
-""", unsafe_allow_html=True)
+"""
 
 
 # ═══════════════════════════════════════════
@@ -611,16 +767,40 @@ def export_excel(ticker, info, hist_df, proj_df, valuation, sensitivity_ggm, sen
 # PLOTTING FUNCTIONS
 # ═══════════════════════════════════════════
 
-CHART_LAYOUT = dict(
+CHART = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
-    font=dict(family="IBM Plex Mono", color="#7d8590", size=11),
-    margin=dict(l=10, r=10, t=40, b=10),
-    legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(size=10)),
-    xaxis=dict(gridcolor="#21262d", linecolor="#30363d"),
-    yaxis=dict(gridcolor="#21262d", linecolor="#30363d"),
+    font=dict(family="Geist Mono, JetBrains Mono, monospace", color="#57606a", size=10),
+    margin=dict(l=10, r=10, t=38, b=10),
+    legend=dict(
+        bgcolor="rgba(0,0,0,0)",
+        font=dict(size=10),
+        orientation="h",
+        yanchor="bottom", y=1.02, xanchor="right", x=1,
+        bordercolor="rgba(0,0,0,0)",
+    ),
+    xaxis=dict(
+        gridcolor="rgba(0,0,0,0)",    # no x gridlines
+        linecolor="#1a2535",
+        tickfont=dict(size=10),
+        zeroline=False,
+        showgrid=False,
+    ),
+    yaxis=dict(
+        gridcolor="#111827",           # very subtle horizontal only
+        gridwidth=1,
+        linecolor="#1a2535",
+        tickfont=dict(size=10),
+        zeroline=False,
+    ),
+    hoverlabel=dict(
+        bgcolor="#161f2e",
+        bordercolor="#1a2535",
+        font=dict(family="Geist Mono, monospace", size=11, color="#e6edf3"),
+    ),
 )
 
+CHART_CONFIG = {"displayModeBar": False, "staticPlot": False, "responsive": True}
 
 def plot_ufcf_history(hist_df):
     cols = hist_df.columns.tolist()
@@ -741,77 +921,99 @@ def plot_price_history_with_range(hist, price_ggm, price_em, current_price):
 # SIDEBAR — INPUTS
 # ═══════════════════════════════════════════
 
+SIDEBAR_TEMPLATE = '''
 with st.sidebar:
     st.markdown("""
-    <div style='font-family:"IBM Plex Mono",monospace;font-size:18px;font-weight:600;
-         color:#e6edf3;letter-spacing:-0.5px;padding:8px 0 4px 0;'>
-    📊 DCF Engine
-    </div>
-    <div style='font-size:10px;color:#7d8590;font-family:"IBM Plex Mono",monospace;
-         text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;'>
-    Professional Valuation Model
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown('<div class="section-header">Company</div>', unsafe_allow_html=True)
-    ticker_input = st.text_input("Ticker Symbol", value="AAPL", max_chars=10,
-                                  help="Enter any valid US equity ticker (e.g., AAPL, MSFT, GOOGL)").upper().strip()
-
-    st.markdown('<div class="section-header">Projection Assumptions</div>', unsafe_allow_html=True)
-
-    n_years = st.slider("Forecast Period (years)", 3, 10, 5)
-
-    st.markdown("**Revenue Growth (per year)**")
-    # Per-year growth rates
-    growth_uniform = st.checkbox("Use uniform growth rate", value=True)
-    if growth_uniform:
-        g_uniform = st.slider("Annual Revenue Growth", -0.10, 0.40, 0.08, 0.005, format="%.1f%%",
-                               help="Applied uniformly across all forecast years")
-        rev_growths = [g_uniform] * n_years
-    else:
-        rev_growths = []
-        for i in range(n_years):
-            g = st.slider(f"  Year {i+1} Growth", -0.10, 0.40,
-                          max(0.15 - i*0.02, 0.03), 0.005, format="%.1f%%")
-            rev_growths.append(g)
-
-    st.markdown('<hr class="divider">', unsafe_allow_html=True)
-
-    ebit_margin = st.slider("EBIT Margin", 0.0, 0.50, 0.20, 0.005, format="%.1f%%")
-    da_pct      = st.slider("D&A as % of Revenue", 0.01, 0.20, 0.05, 0.005, format="%.1f%%")
-    capex_pct   = st.slider("CapEx as % of Revenue", 0.01, 0.25, 0.06, 0.005, format="%.1f%%")
-    nwc_pct     = st.slider("NWC Change as % of Rev Δ", 0.0, 0.30, 0.05, 0.005, format="%.1f%%")
-    tax_rate    = st.slider("Tax Rate", 0.10, 0.40, 0.21, 0.01, format="%.0f%%")
-
-    st.markdown('<div class="section-header">Cost of Capital</div>', unsafe_allow_html=True)
-
-    manual_wacc = st.checkbox("Override WACC manually", value=False)
-    if manual_wacc:
-        wacc_input = st.slider("WACC", 0.04, 0.20, 0.09, 0.005, format="%.2f%%") / 100
-        wacc_input = st.slider("WACC (%)", 4.0, 20.0, 9.0, 0.25, format="%.2f%%") / 100
-    else:
-        rf_rate  = st.slider("Risk-Free Rate", 0.02, 0.07, 0.043, 0.001, format="%.2f%%")
-        erp      = st.slider("Equity Risk Premium", 0.03, 0.09, 0.055, 0.005, format="%.2f%%")
-        beta_ov  = st.checkbox("Override Beta", value=False)
-        if beta_ov:
-            beta = st.slider("Beta", 0.3, 2.5, 1.1, 0.05)
+    <div style='padding:16px 0 6px 0;'>
+      <div style='font-family:"Geist Mono",monospace;font-size:16px;font-weight:600;
+           color:#e6edf3;letter-spacing:-0.3px;'>◈ DCF Engine</div>
+      <div style='font-size:9px;color:#21262d;font-family:"Geist Mono",monospace;
+           text-transform:uppercase;letter-spacing:2.5px;margin-top:4px;'>
+           Professional Valuation Model</div>
+    </div>""", unsafe_allow_html=True)
+ 
+    # ── Company (always visible, prominent) ───────────────────
+    st.markdown("<div style='margin:4px 0 2px;'></div>", unsafe_allow_html=True)
+    ticker_input = st.text_input("", value="AAPL", max_chars=10,
+                                  placeholder="Ticker — e.g. AAPL").upper().strip()
+ 
+    # ── Scenario (always visible) ─────────────────────────────
+    scenario_mode = st.selectbox("Scenario", ["Base","Bull","Bear"], index=0,
+                                  label_visibility="collapsed")
+ 
+    # ── Revenue Growth (collapsed by default) ────────────────
+    with st.expander("Revenue & Growth", expanded=False):
+        n_years = st.slider("Forecast Years", 3, 10, 5)
+        uniform  = st.checkbox("Uniform growth rate", value=True)
+        if uniform:
+            base_g = st.slider("Base Growth",  -0.10, 0.40, 0.08, 0.005, format="%.1f%%")
+            bull_g = st.slider("Bull Growth",  -0.10, 0.50, 0.14, 0.005, format="%.1f%%")
+            bear_g = st.slider("Bear Growth",  -0.15, 0.30, 0.03, 0.005, format="%.1f%%")
+            rev_growths_map = {
+                "Base": [base_g]*n_years,
+                "Bull": [bull_g]*n_years,
+                "Bear": [bear_g]*n_years,
+            }
         else:
-            beta = None
-
-    st.markdown('<div class="section-header">Terminal Value</div>', unsafe_allow_html=True)
-    tgr         = st.slider("Terminal Growth Rate (GGM)", 0.005, 0.05, 0.025, 0.005, format="%.2f%%")
-    exit_mult   = st.slider("Exit EV/EBITDA Multiple", 5.0, 30.0, 12.0, 0.5, format="%.1fx")
-
-    st.markdown('<div class="section-header">Balance Sheet Overrides</div>', unsafe_allow_html=True)
-    override_nd = st.checkbox("Override Net Debt", value=False)
-    if override_nd:
-        nd_override = st.number_input("Net Debt ($B)", value=0.0, step=0.5) * 1e9
-    override_sh = st.checkbox("Override Shares Outstanding", value=False)
-    if override_sh:
-        sh_override = st.number_input("Shares (M)", value=1000.0, step=10.0) * 1e6
-
+            base_g = st.slider("Base Growth", -0.10, 0.40, 0.08, 0.005, format="%.1f%%")
+            rev_growths_map = {"Base":[base_g]*n_years,"Bull":[],"Bear":[]}
+            for i in range(n_years):
+                rev_growths_map["Bull"].append(
+                    st.slider(f"Bull Y{i+1}", -0.10, 0.50, max(0.18-i*0.02,0.05), 0.005, format="%.1f%%"))
+                rev_growths_map["Bear"].append(
+                    st.slider(f"Bear Y{i+1}", -0.15, 0.30, max(0.05-i*0.01,-0.02), 0.005, format="%.1f%%"))
+        rev_growths = rev_growths_map[scenario_mode]
+ 
+    # ── Margins & Reinvestment ────────────────────────────────
+    with st.expander("Margins & Reinvestment", expanded=False):
+        ebit_margin = st.slider("EBIT Margin",        0.0,  0.50, 0.20, 0.005, format="%.1f%%")
+        da_pct      = st.slider("D&A % of Revenue",   0.01, 0.20, 0.05, 0.005, format="%.1f%%")
+        capex_pct   = st.slider("CapEx % of Revenue", 0.01, 0.25, 0.06, 0.005, format="%.1f%%")
+        nwc_pct     = st.slider("NWC Δ % of Rev Δ",   0.0,  0.30, 0.05, 0.005, format="%.1f%%")
+        tax_rate    = st.slider("Tax Rate",            0.10, 0.40, 0.21, 0.01,  format="%.0f%%")
+        sbc_pct     = st.slider("SBC % of Revenue",   0.0,  0.20, 0.0,  0.005, format="%.1f%%",
+                                 help="Stock-based compensation. Material for tech companies.")
+ 
+    # ── Cost of Capital ───────────────────────────────────────
+    with st.expander("Cost of Capital", expanded=False):
+        manual_wacc = st.checkbox("Manual WACC override")
+        if manual_wacc:
+            wacc_man = st.slider("WACC (%)", 4.0, 20.0, 9.0, 0.25, format="%.2f%%") / 100
+            rf_rate = 0.043; erp = 0.055
+        else:
+            rf_rate      = st.slider("Risk-Free Rate",      0.02, 0.07, 0.043, 0.001, format="%.2f%%")
+            erp          = st.slider("Equity Risk Premium", 0.03, 0.09, 0.055, 0.005, format="%.2f%%")
+            override_beta= st.checkbox("Override Beta")
+            beta_man     = st.slider("Beta", 0.3, 2.5, 1.1, 0.05) if override_beta else None
+        mid_year = st.checkbox("Mid-year convention",
+                                help="Discounts at t-0.5. More accurate, ~5% price uplift.")
+        use_adj  = st.checkbox("Use SBC-adjusted UFCF", value=sbc_pct > 0)
+ 
+    # ── Terminal Value ────────────────────────────────────────
+    with st.expander("Terminal Value", expanded=False):
+        tgr       = st.slider("Terminal Growth Rate", 0.005, 0.05, 0.025, 0.005, format="%.2f%%")
+        exit_mult = st.slider("Exit EV/EBITDA",       5.0,  30.0,  12.0,  0.5,   format="%.1fx")
+ 
+    # ── Comps ─────────────────────────────────────────────────
+    with st.expander("Comparable Companies", expanded=False):
+        run_comps   = st.checkbox("Fetch peer data", value=False)
+        comps_input = st.text_input("Peer tickers (comma-separated)", value="MSFT,GOOGL,META,AMZN")
+ 
+    # ── Overrides ─────────────────────────────────────────────
+    with st.expander("Balance Sheet Overrides", expanded=False):
+        ov_nd = st.checkbox("Override Net Debt")
+        nd_ov = st.number_input("Net Debt ($B)", value=0.0, step=0.5)*1e9 if ov_nd else None
+        ov_sh = st.checkbox("Override Shares")
+        sh_ov = st.number_input("Shares (M)", value=1000.0, step=10.0)*1e6 if ov_sh else None
+ 
+    st.markdown("<div style='margin:14px 0 4px;'></div>", unsafe_allow_html=True)
     run = st.button("▶  Run Valuation", use_container_width=True, type="primary")
-
+ 
+    # Home button
+    st.markdown("<div style='margin:8px 0 0;'></div>", unsafe_allow_html=True)
+    if st.button("← Home", use_container_width=True):
+        st.switch_page("Home.py")
+'''
 
 # ═══════════════════════════════════════════
 # MAIN AREA
@@ -972,7 +1174,7 @@ with tabs[0]:
     if not data["history"].empty:
         fig_hist = plot_price_history_with_range(
             data["history"], val["price_ggm"], val["price_em"], cur_price)
-        st.plotly_chart(fig_hist, use_container_width=True)
+        st.plotly_chart(fig_hist, use_container_width=True, config=CHART_CONFIG)
     else:
         st.info("No price history available.")
 
@@ -1027,7 +1229,7 @@ with tabs[1]:
         </table>
         """, unsafe_allow_html=True)
 
-        st.plotly_chart(plot_ufcf_history(hist_df), use_container_width=True)
+        st.plotly_chart(plot_ufcf_history(hist_df), use_container_width=True, config=CHART_CONFIG)
     else:
         st.warning("Could not compute historical UFCF — check ticker or try a different company.")
 
@@ -1064,7 +1266,7 @@ with tabs[2]:
     </table>
     """, unsafe_allow_html=True)
 
-    st.plotly_chart(plot_projected_fcf(proj_df, val["pv_fcf"]), use_container_width=True)
+    st.plotly_chart(plot_projected_fcf(proj_df, val["pv_fcf"]), use_container_width=True, config=CHART_CONFIG)
 
 
 # ─ Tab 3: Valuation Bridge ──────────────
@@ -1098,7 +1300,7 @@ with tabs[3]:
 
         tv_pct = val["pv_tv_ggm"] / val["ev_ggm"] * 100 if val["ev_ggm"] > 0 else 0
         st.markdown(f"*TV represents **{tv_pct:.0f}%** of EV — {'⚠️ high sensitivity to terminal assumptions' if tv_pct > 75 else '✅ reasonable terminal value weight'}*")
-        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="ggm"), use_container_width=True)
+        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="ggm"), use_container_width=True, config=CHART_CONFIG)
 
     with right:
         st.markdown("#### Exit Multiple Method")
@@ -1125,7 +1327,7 @@ with tabs[3]:
 
         tv_pct_em = val["pv_tv_em"] / val["ev_em"] * 100 if val["ev_em"] > 0 else 0
         st.markdown(f"*TV represents **{tv_pct_em:.0f}%** of EV — {'⚠️ high sensitivity to exit multiple' if tv_pct_em > 75 else '✅ reasonable terminal value weight'}*")
-        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="em"), use_container_width=True)
+        st.plotly_chart(plot_valuation_bridge(val, net_debt, shares, method="em"), use_container_width=True, config=CHART_CONFIG)
 
     # PV of each year's FCF
     st.markdown('<div class="section-header">Annual PV of FCF ($M)</div>', unsafe_allow_html=True)
@@ -1140,7 +1342,7 @@ with tabs[3]:
                             marker_color="#3fb950"))
     fig_pv.update_layout(barmode="group", title="Nominal vs. Present Value of FCF ($M)",
                          **CHART_LAYOUT)
-    st.plotly_chart(fig_pv, use_container_width=True)
+    st.plotly_chart(fig_pv, use_container_width=True, config=CHART_CONFIG)
 
 
 # ─ Tab 4: Sensitivity ───────────────────
@@ -1158,13 +1360,13 @@ with tabs[4]:
     sA, sB = st.columns(2)
     with sA:
         st.markdown("#### GGM — WACC × Terminal Growth Rate")
-        st.plotly_chart(plot_sensitivity_heatmap(sens_ggm, cur_price), use_container_width=True)
+        st.plotly_chart(plot_sensitivity_heatmap(sens_ggm, cur_price), use_container_width=True, config=CHART_CONFIG)
         st.dataframe(sens_ggm.style.background_gradient(cmap="RdYlGn", axis=None)
                      .format("${:.2f}"), use_container_width=True)
 
     with sB:
         st.markdown("#### Exit Multiple — WACC × EV/EBITDA")
-        st.plotly_chart(plot_sensitivity_heatmap(sens_em, cur_price), use_container_width=True)
+        st.plotly_chart(plot_sensitivity_heatmap(sens_em, cur_price), use_container_width=True, config=CHART_CONFIG)
         st.dataframe(sens_em.style.background_gradient(cmap="RdYlGn", axis=None)
                      .format("${:.2f}"), use_container_width=True)
 
@@ -1215,7 +1417,7 @@ with tabs[4]:
                        annotation_text=f"Base: ${base_price:.2f}")
     fig_torn.update_layout(title="Tornado: Assumption Sensitivity (Avg Price $)",
                            barmode="overlay", **CHART_LAYOUT, height=280)
-    st.plotly_chart(fig_torn, use_container_width=True)
+    st.plotly_chart(fig_torn, use_container_width=True, config=CHART_CONFIG)
 
 
 # ─ Tab 5: WACC Detail ────────────────────
@@ -1265,7 +1467,7 @@ with tabs[5]:
         textposition="outside",
     ))
     fig_wacc.update_layout(title="WACC Composition", **CHART_LAYOUT, height=320)
-    st.plotly_chart(fig_wacc, use_container_width=True)
+    st.plotly_chart(fig_wacc, use_container_width=True, config=CHART_CONFIG)
 
 
 # ═══════════════════════════════════════════
