@@ -366,7 +366,7 @@ NEW_CSS = """
 .home-nav-btn { display: none; }
 </style>
 """
-
+st.markdown(NEW_CSS, unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════
 # HELPER FUNCTIONS
